@@ -1,6 +1,6 @@
 <h1><%= @recipe.title %></h1>
 <h3>Detalhes</h3>
-<p><%=  @recipe.recipe_type %></p>
+<p><%=  @recipe.recipe_type.name %></p>
 <p><%=  @recipe.cuisine %></p>
 <p><%=  @recipe.difficulty %></p>
 <p><%=  @recipe.cook_time_min %></p>
@@ -9,3 +9,4 @@
 <h3>Como Preparar</h3>
 <p><%=  @recipe.cook_method %></p>
 <%= link_to 'Voltar', root_path %>
+<%= link_to 'Editar', edit_recipe_path(@recipe) %>
