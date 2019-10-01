@@ -1,4 +1,14 @@
 <h1>Cadastre seu novo tipo de receita abaixo</h1>
+
+<% if @recipe_type.errors.any? %>
+  <p>Não foi possível salvar o tipo da receita.</p>
+   <ul>
+    <% @recipe_type.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+<% end %>
+
 <%= form_with model: @recipe_type, local: true do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>

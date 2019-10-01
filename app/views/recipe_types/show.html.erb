@@ -1,0 +1,7 @@
+<% if @recipe_type.recipes.length == 0 %>
+  <h3><%= "Nenhuma receita encontrada para: #{@recipe_type.name}" %></h3>
+<% else %>
+  <h1><%= "Receitas na categoria #{@recipe_type.name}" %></h1>
+
+  <%= render partial: 'shared/recipe', collection: @recipe_type.recipes %>
+<% end %>

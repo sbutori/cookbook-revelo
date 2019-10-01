@@ -1,7 +1,24 @@
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>
-<%= link_to 'Enviar uma receita', new_recipe_path %>
-<%= link_to 'Enviar um novo tipo de receita', new_recipe_type_path %>
-<%= render @recipes %>
+<ul>
+  <li><%= link_to 'Enviar uma receita', new_recipe_path %></li>
+  <li><%= link_to 'Enviar um novo tipo de receita', new_recipe_type_path %></li>
+</ul>
+
+<h3>Tipos de Receita:</h3>
+<ul>
+<% @recipe_types.each do |recipe_type| %>
+  <li><%= link_to recipe_type.name, recipe_type %></li>
+<% end %>
+</ul>
+
+<%= form_with(url: "/search", method: "get", local: true) do %>
+  <%= label_tag(:q, "Pesquisar receitas:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Pesquisar") %>
+<% end %>
+
+<%= render partial: 'shared/recipe', collection: @recipes %>
+
 
 

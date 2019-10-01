@@ -2,6 +2,10 @@ class RecipeTypesController < ApplicationController
   def index
     @recipe_types = RecipeType.all
   end
+
+  def show
+    @recipe_type = RecipeType.find(params[:id])
+  end
   
   def new
     @recipe_type = RecipeType.new
@@ -12,7 +16,6 @@ class RecipeTypesController < ApplicationController
     if @recipe_type.save
       redirect_to recipe_types_path
     else
-      flash.now[:warning] = 'Você deve informar todos os dados da receita'
       render :new
     end
   end

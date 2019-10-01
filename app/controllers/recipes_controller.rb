@@ -3,7 +3,12 @@ class RecipesController < ApplicationController
   before_action :set_recipe_type, only: %i[new edit]
 
   def index
-    @recipes = Recipe.all
+    # if params[:q]
+    #   @recipes = Recipe.where("title = ?", params[:q])
+    # else
+      @recipes = Recipe.all
+      @recipe_types = RecipeType.all
+    # end
   end
 
   
@@ -20,7 +25,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to @recipe
     else
-      flash.now[:warning] = 'Você deve informar todos os dados da receita'
+      flash.now[:warning] = 'Você deve informar todos os dados do tipo de receita'
       set_recipe_type
       render :new
     end
@@ -41,6 +46,10 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search
+    @recipes = Recipe.where("title LIKE ?", "%#{params[:q]}%")
+  end
+
   private
 
   def set_recipe
@@ -53,6 +62,6 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :recipe_type_id, :cuisine, :difficulty, 
-                                  :cook_time, :ingredients, :cook_method) 
+                                  :cook_time, :ingredients, :cook_method, :picture) 
   end
 end

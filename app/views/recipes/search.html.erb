@@ -1,0 +1,9 @@
+<h1>Pesquisa por Nome de Receita</h1>
+<% if @recipes.length == 0 %>
+  <p><%= "Nenhuma receita encontrada para: #{params[:q]}"  %></p>
+<% else %>
+  <%= "#{@recipes.length} #{"resultado".pluralize(@recipes.length)} #{"encontrado".pluralize(@recipes.length)} para: #{params[:q]}" %>
+<% end %>
+<%= render partial: 'shared/recipe', collection: @recipes %>
+
+<%= link_to 'Voltar', root_path %>
