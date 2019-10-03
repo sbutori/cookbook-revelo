@@ -43,7 +43,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to @recipe
     else
-      flash.now[:warning] = 'Você deve informar todos os dados da receita'
+      # flash.now[:warning] = 'Você deve informar todos os dados da receita'
       set_recipe_type
       set_cuisine
       render :edit

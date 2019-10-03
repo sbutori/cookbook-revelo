@@ -5,4 +5,5 @@ class RecipeList < ApplicationRecord
   has_many :recipes, through: :recipe_list_items
 
   validates :name, :user_id, presence: true
+  validates :name, uniqueness: { scope: :user_id }
 end

@@ -182,3 +182,5 @@ pt-BR:
         name: "Nome"
       cuisine:
         name: "Nome"
+      recipe_list:
+        name: "Nome"
