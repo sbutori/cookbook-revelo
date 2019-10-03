@@ -1,7 +1,7 @@
 <%= image_tag @recipe.picture if @recipe.picture.attached? %>
 <h1><%= @recipe.title %></h1>
 <h3>Detalhes</h3>
-<p>Nome: <%=  @recipe.recipe_type.name %></p>
+<p>Tipo de Receita: <%=  @recipe.recipe_type.name %></p>
 <p>Cozinha: <%=  @recipe.cuisine.name %></p>
 <p>Dificuldade: <%=  @recipe.difficulty %></p>
 <p>Tempo de Preparo: <%=  @recipe.cook_time_min %></p>

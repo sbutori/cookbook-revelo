@@ -1,8 +1,8 @@
 <ul>
-  <li><%= link_to 'Enviar uma receita', new_recipe_path %></li>
-  <li><%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path %></li>
-  <li><%= link_to 'Cadastrar nova cozinha', new_cuisine_path %></li>
   <% if user_signed_in? %>
+    <li><%= link_to 'Enviar uma receita', new_recipe_path %></li>
+    <li><%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path %></li>
+    <li><%= link_to 'Cadastrar nova cozinha', new_cuisine_path %></li>
     <li><%= link_to 'Minhas listas de receitas', recipe_lists_path  %></li>
     <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
   <% else %>

@@ -2,11 +2,14 @@ require 'rails_helper'
 
 feature 'User register recipe' do
   scenario 'successfully' do
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
     #cria os dados necessários, nesse caso não vamos criar dados no banco
+    
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
 
     # simula a ação do usuário
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Enviar uma receita'
 
@@ -35,8 +38,16 @@ feature 'User register recipe' do
     expect(page).to have_css('img[src*="tabule.jpeg"]')
   end
 
+  scenario 'and must be logged in' do
+    visit root_path
+    
+    expect(page).to_not have_link('Enviar uma receita')
+  end
+
   scenario 'and must fill in all fields' do
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
     # simula a ação do usuário
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Enviar uma receita'
 

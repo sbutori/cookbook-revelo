@@ -20,8 +20,13 @@ class RecipeListsController < ApplicationController
   def add_recipe
     @recipe_list = RecipeList.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe_list.recipes << @recipe
-    redirect_to @recipe
+    if @recipe_list.recipes.include?(@recipe)
+      flash[:warning] = 'Essa receita já se encontra na lista!'
+      redirect_to @recipe
+    else
+      @recipe_list.recipes << @recipe
+      redirect_to @recipe
+    end
   end
   
   private

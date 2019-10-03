@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 feature 'Admin' do
-  scenario 'registers cuisine' do 
+  scenario 'registers cuisine' do
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+
     # ARRANGE
     # Nada a fazer por aqui :)
     # ACT
+    
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Cadastrar nova cozinha'
+    
     fill_in 'Nome', with: 'Brasileira'
     click_on 'Enviar'
 
@@ -15,7 +20,9 @@ feature 'Admin' do
   end
 
   scenario 'fails to save cuisine without filling all fields' do
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Cadastrar nova cozinha'
     fill_in 'Nome', with: ''
@@ -25,8 +32,10 @@ feature 'Admin' do
   end
 
   scenario 'cannot register duplicated cuisine' do
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
     Cuisine.create!(name: 'Brasileira')
 
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Cadastrar nova cozinha'
     fill_in 'Nome', with: 'Brasileira'

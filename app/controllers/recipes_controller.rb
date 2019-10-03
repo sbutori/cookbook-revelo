@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show search]
   before_action :set_recipe, only: %i[show edit update]
   before_action :set_recipe_type, only: %i[new edit]
   before_action :set_cuisine, only: %i[new edit]
