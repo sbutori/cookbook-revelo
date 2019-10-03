@@ -16,6 +16,13 @@ class RecipeListsController < ApplicationController
       render :new
     end
   end
+
+  def add_recipe
+    @recipe_list = RecipeList.find(params[:id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipe_list.recipes << @recipe
+    redirect_to @recipe
+  end
   
   private
 

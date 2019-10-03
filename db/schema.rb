@@ -41,11 +41,11 @@ ActiveRecord::Schema.define(version: 2019_10_03_124608) do
 
   create_table "recipe_list_items", force: :cascade do |t|
     t.integer "recipe_id"
-    t.integer "recipelist_id"
+    t.integer "recipe_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_recipe_list_items_on_recipe_id"
-    t.index ["recipelist_id"], name: "index_recipe_list_items_on_recipelist_id"
+    t.index ["recipe_list_id"], name: "index_recipe_list_items_on_recipe_list_id"
   end
 
   create_table "recipe_lists", force: :cascade do |t|

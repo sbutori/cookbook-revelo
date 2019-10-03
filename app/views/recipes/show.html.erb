@@ -11,3 +11,20 @@
 <p><%=  @recipe.cook_method %></p>
 <%= link_to 'Voltar', root_path %>
 <%= link_to 'Editar', edit_recipe_path(@recipe) %>
+
+<% if user_signed_in? %>
+  <h3>Adicionar receita à lista:</h3>
+  <ul>
+    <% current_user.recipe_lists.each do |recipe_list| %>
+      <li><%= link_to recipe_list.name, add_recipe_path(recipe_list, @recipe) %></li>
+    <% end %>
+  </ul>
+
+  <h3>Listas em que essa receita está cadastrada:</h3>
+  <ul>
+
+  <% @recipe.recipe_lists.each do |recipe_list| %>
+    <li class="list-name"><%= recipe_list.name %></li>
+  <% end %>
+  </ul>
+<% end %>
