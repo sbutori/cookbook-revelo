@@ -1,0 +1,8 @@
+<h1>Lista de receitas de <%= current_user.email %></h1>
+<% current_user.recipe_lists.each do |recipe_list| %>
+  <ul>
+    <li><%= recipe_list.name %></li>
+  </ul>
+<% end %>
+
+<%= link_to 'Criar uma nova lista', new_recipe_list_path %>

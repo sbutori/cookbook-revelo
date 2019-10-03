@@ -1,0 +1,16 @@
+<h1>Criar uma nova lista de receitas</h1>
+
+<% if @recipe_list.errors.any? %>
+  <p>Não foi possível salvar a lista de receitas</p>
+  <ul>
+  <% @recipe_list.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @recipe_list, local: true do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name  %>
+  <%= f.submit 'Criar' %>
+<% end %>
