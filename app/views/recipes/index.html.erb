@@ -2,21 +2,52 @@
 <p>Bem-vindo ao maior livro de receitas online</p>
 <ul>
   <li><%= link_to 'Enviar uma receita', new_recipe_path %></li>
-  <li><%= link_to 'Enviar um novo tipo de receita', new_recipe_type_path %></li>
+  <li><%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path %></li>
+  <li><%= link_to 'Cadastrar nova cozinha', new_cuisine_path %></li>
 </ul>
 
-<h3>Tipos de Receita:</h3>
-<ul>
-<% @recipe_types.each do |recipe_type| %>
-  <li><%= link_to recipe_type.name, recipe_type %></li>
-<% end %>
-</ul>
+<div>
+  <%= form_with(url: "/search", method: "get", local: true) do %>
+    <%= label_tag(:q, "Pesquisar receitas:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Pesquisar") %>
+  <% end %>
+</div>
 
-<%= form_with(url: "/search", method: "get", local: true) do %>
-  <%= label_tag(:q, "Pesquisar receitas:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Pesquisar") %>
-<% end %>
+<div>
+  <h3>Filtrar por tipos de Receita:</h3>
+  <% @recipe_types.each do |recipe_type| %>
+    <ul>
+      <li><%= link_to recipe_type.name, recipe_type %></li>
+    </ul>
+  <% end %>
+  <!--
+  <select onchange="location = this.value;" id="recipe-type">
+    <option disabled selected value> -- selecione -- </option>
+    <% @recipe_types.each do |recipe_type| %>
+    <option value="recipe_types/<%= recipe_type.id %>"><%= recipe_type.name %></option>
+    <% end %>
+  </select>
+  -->
+</div>
+<div>
+  <h3>Filtrar por Cozinha:</h3>
+  <% @cuisines.each do |cuisine| %>
+    <ul>
+      <li><%= link_to cuisine.name, cuisine %></li>
+    </ul>
+  <% end %>
+  <!--
+  <h3>Filtrar por Cozinha:</h3>
+  <select onchange="location = this.value;" id="cuisine">
+  <option disabled selected value> -- selecione -- </option>
+  <% @cuisines.each do |cuisine| %>
+    <option value="cuisines/<%= cuisine.id %>"><%= cuisine.name %></option>
+  <% end %>
+  </select>
+  -->
+</div>
+<div>
 
 <%= render partial: 'shared/recipe', collection: @recipes %>
 

@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update]
   before_action :set_recipe_type, only: %i[new edit]
+  before_action :set_cuisine, only: %i[new edit]
 
   def index
     # if params[:q]
@@ -8,6 +9,7 @@ class RecipesController < ApplicationController
     # else
       @recipes = Recipe.all
       @recipe_types = RecipeType.all
+      @cuisines = Cuisine.all
     # end
   end
 
@@ -27,6 +29,7 @@ class RecipesController < ApplicationController
     else
       flash.now[:warning] = 'Você deve informar todos os dados do tipo de receita'
       set_recipe_type
+      set_cuisine
       render :new
     end
   end
@@ -42,6 +45,7 @@ class RecipesController < ApplicationController
     else
       flash.now[:warning] = 'Você deve informar todos os dados da receita'
       set_recipe_type
+      set_cuisine
       render :edit
     end
   end
@@ -60,8 +64,12 @@ class RecipesController < ApplicationController
     @recipetypes = RecipeType.all
   end
 
+  def set_cuisine
+    @cuisines = Cuisine.all
+  end
+
   def recipe_params
-    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine, :difficulty, 
+    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, 
                                   :cook_time, :ingredients, :cook_method, :picture) 
   end
 end

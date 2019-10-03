@@ -1,0 +1,9 @@
+<% if @cuisine.recipes.length == 0 %>
+  <h3><%= "Nenhuma receita encontrada para cozinha #{@cuisine.name}" %></h3>
+<% else %>
+  <h1><%= "Todas as receitas da cozinha #{@cuisine.name}" %></h1>
+
+  <%= render partial: 'shared/recipe', collection: @cuisine.recipes %>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>

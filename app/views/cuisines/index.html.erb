@@ -1,0 +1,8 @@
+<h1>Cozinhas cadastradas no sistema:</h1>
+<ul>
+  <% @cuisines.each do |cuisine| %>
+    <li><%= link_to cuisine.name, cuisine %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Voltar', root_path %>

@@ -169,3 +169,16 @@ pt-BR:
         odd: "deve ser ímpar"
         even: "deve ser par"
         record_invalid: "A validação falhou: %{errors}"
+    attributes:
+      recipe:
+        title: "Título"
+        recipe_type: "Tipo da Receita"
+        cuisine: "Cozinha"
+        difficulty: "Dificuldade" 
+        cook_time: "Tempo de Cozimento" 
+        ingredients: "Ingredientes" 
+        cook_method: "Método de Preparo"
+      recipe_type:
+        name: "Nome"
+      cuisine:
+        name: "Nome"

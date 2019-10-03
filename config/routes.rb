@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root to: 'recipes#index'
   resources :recipes, only: %i[ index new create show edit update ]
   resources :recipe_types, only: %i[index show new create]
+  resources :cuisines, only: %i[index show new create]
   get 'search', to: 'recipes#search', as: 'recipe_search'
 end
