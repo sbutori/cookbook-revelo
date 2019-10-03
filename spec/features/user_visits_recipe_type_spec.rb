@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'User visits recipe type' do
   scenario 'and sees recipes' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco (ARRANGE)
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     another_recipe_type = RecipeType.create(name: 'Café da Manhã')
@@ -10,17 +11,20 @@ feature 'User visits recipe type' do
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 60,
                   ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', 
+                  user: user)
     Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 61,
                   ingredients: 'Farinha, açucar, chocolate',
-                  cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
     Recipe.create(title: 'Tabule', recipe_type: another_recipe_type,
-                  cuisine: cuisine, difficulty: 'Muito Hard',
+                  cuisine: cuisine, difficulty: 'Hard',
                   cook_time: 42,
-                  ingredients: 'Umas paradas',
-                  cook_method: 'Sei lá')
+                  ingredients: 'Vários',
+                  cook_method: 'Misture tudo',
+                  user: user)
     
     # simula a ação do usuário (ACT)
     visit root_path

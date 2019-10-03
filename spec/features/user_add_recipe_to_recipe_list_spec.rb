@@ -9,7 +9,8 @@ feature 'User add recipe to recipe list' do
       cuisine: cuisine, difficulty: 'Médio',
       cook_time: 60,
       ingredients: 'Farinha, açucar, cenoura',
-      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+      user: user)
     RecipeList.create!(name: 'Minhas receitas favoritas', user: user)
 
     login_as(user, scope: :user)
@@ -29,7 +30,8 @@ feature 'User add recipe to recipe list' do
       cuisine: cuisine, difficulty: 'Médio',
       cook_time: 60,
       ingredients: 'Farinha, açucar, cenoura',
-      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+      user: user)
     RecipeList.create!(name: 'Minhas receitas favoritas', user: user)
 
     login_as(user, scope: :user)

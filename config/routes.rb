@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :cuisines, only: %i[index show new create]
   resources :recipe_lists, only: %i[index show new create]
   get 'search', to: 'recipes#search', as: 'recipe_search'
+  # TRANSFORMAR ROTA EM NESTED (MEMBER) E EM POST
   get 'add_recipe/:id/:recipe_id', to: 'recipe_lists#add_recipe', as: 'add_recipe'
 end

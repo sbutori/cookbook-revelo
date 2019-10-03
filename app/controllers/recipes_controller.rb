@@ -25,10 +25,11 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
     if @recipe.save
       redirect_to @recipe
     else
-      flash.now[:warning] = 'Você deve informar todos os dados do tipo de receita'
+      # flash.now[:warning] = 'Você deve informar todos os dados do tipo de receita'
       set_recipe_type
       set_cuisine
       render :new

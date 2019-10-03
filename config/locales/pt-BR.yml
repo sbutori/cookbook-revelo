@@ -178,6 +178,7 @@ pt-BR:
         cook_time: "Tempo de Cozimento" 
         ingredients: "Ingredientes" 
         cook_method: "Método de Preparo"
+        user: "Usuário"
       recipe_type:
         name: "Nome"
       cuisine:

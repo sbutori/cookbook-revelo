@@ -36,6 +36,7 @@ feature 'User register recipe' do
     expect(page).to have_css('h3', text: 'Como Preparar')
     expect(page).to have_css('p', text:  'Misturar tudo e servir. Adicione limão a gosto.')
     expect(page).to have_css('img[src*="tabule.jpeg"]')
+    expect(page).to have_css('p', text: 'Receita enviada por stefano@revelo.com.br')
   end
 
   scenario 'and must be logged in' do

@@ -5,16 +5,22 @@ feature 'User search recipe' do
     #cria os dados necessários, nesse caso não vamos criar dados no banco (ARRANGE)
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
-    Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                  cuisine: cuisine, difficulty: 'Médio',
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+
+    Recipe.create!(title: 'Bolo de cenoura', 
+                  recipe_type: recipe_type,
+                  cuisine: cuisine, 
+                  difficulty: 'Médio',
                   cook_time: 60,
                   ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-    Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
+    Recipe.create!(title: 'Bolo de chocolate', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 61,
                   ingredients: 'Farinha, açucar, chocolate',
-                  cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
 
     # simula a ação do usuário (ACT)
     visit root_path
@@ -30,11 +36,14 @@ feature 'User search recipe' do
   scenario 'and does not find' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+
     Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
       cuisine: cuisine, difficulty: 'Médio',
       cook_time: 60,
       ingredients: 'Farinha, açucar, cenoura',
-      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+      user: user)
 
       visit root_path
       fill_in 'Pesquisar receitas:', with: 'Bolo de chocolate'
@@ -46,21 +55,26 @@ feature 'User search recipe' do
   scenario 'by partial name and finds multiple results' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+
     Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 60,
                   ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
     Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 61,
                   ingredients: 'Farinha, açucar, chocolate',
-                  cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes')
+                  cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
     Recipe.create(title: 'Tabule', recipe_type: recipe_type,
-                  cuisine: cuisine, difficulty: 'Muito Hard',
+                  cuisine: cuisine, difficulty: 'Hard',
                   cook_time: 42,
-                  ingredients: 'Umas paradas',
-                  cook_method: 'Sei lá')
+                  ingredients: 'Tabule',
+                  cook_method: 'Misture tudo',
+                  user: user)
     
     visit root_path
     fill_in 'Pesquisar receitas:', with: 'Bolo'

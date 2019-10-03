@@ -5,10 +5,14 @@ feature 'User update recipe' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     user = User.create(email: 'stefano@revelo.com.br', password: '123456')
-    Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
-                  recipe_type: recipe_type, cuisine: cuisine,
-                  cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+    Recipe.create(title: 'Bolodecenoura', 
+                  difficulty: 'Médio',
+                  recipe_type: recipe_type, 
+                  cuisine: cuisine,
+                  cook_time: 50, 
+                  ingredients: 'Farinha, açucar, cenoura',
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
 
     # simula a ação do usuário
     login_as(user, scope: :user)
@@ -37,10 +41,14 @@ feature 'User update recipe' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     user = User.create(email: 'stefano@revelo.com.br', password: '123456')
-    Recipe.create(title: 'Bolodecenoura', difficulty: 'Médio',
-                  recipe_type: recipe_type, cuisine: cuisine,
-                  cook_time: 50, ingredients: 'Farinha, açucar, cenoura',
-                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+    Recipe.create(title: 'Bolodecenoura', 
+                  difficulty: 'Médio',
+                  recipe_type: recipe_type,
+                  cuisine: cuisine,
+                  cook_time: 50, 
+                  ingredients: 'Farinha, açucar, cenoura',
+                  cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+                  user: user)
 
     # simula a ação do usuário
     login_as(user, scope: :user)
