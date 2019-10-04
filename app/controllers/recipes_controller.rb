@@ -3,6 +3,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[show edit update]
   before_action :set_recipe_type, only: %i[new edit]
   before_action :set_cuisine, only: %i[new edit]
+  before_action :authorized?, only: %i[edit]
 
   def index
     # if params[:q]
@@ -37,7 +38,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    # @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
   end
 
   def update
@@ -72,6 +73,10 @@ class RecipesController < ApplicationController
 
   def set_cuisine
     @cuisines = Cuisine.all
+  end
+
+  def authorized?
+    redirect_to root_path unless @recipe.user == current_user
   end
 
   def recipe_params
