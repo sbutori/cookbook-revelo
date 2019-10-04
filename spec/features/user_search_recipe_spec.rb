@@ -7,20 +7,20 @@ feature 'User search recipe' do
     cuisine = Cuisine.create(name: 'Brasileira')
     user = User.create(email: 'stefano@revelo.com.br', password: '123456')
 
-    Recipe.create!(title: 'Bolo de cenoura', 
+    Recipe.create(title: 'Bolo de cenoura', 
                   recipe_type: recipe_type,
                   cuisine: cuisine, 
                   difficulty: 'Médio',
                   cook_time: 60,
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
-    Recipe.create!(title: 'Bolo de chocolate', recipe_type: recipe_type,
+                  user: user, status: :approved)
+    Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 61,
                   ingredients: 'Farinha, açucar, chocolate',
                   cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
 
     # simula a ação do usuário (ACT)
     visit root_path
@@ -43,7 +43,7 @@ feature 'User search recipe' do
       cook_time: 60,
       ingredients: 'Farinha, açucar, cenoura',
       cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-      user: user)
+      user: user, status: :approved)
 
       visit root_path
       fill_in 'Pesquisar receitas:', with: 'Bolo de chocolate'
@@ -62,24 +62,23 @@ feature 'User search recipe' do
                   cook_time: 60,
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
     Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 61,
                   ingredients: 'Farinha, açucar, chocolate',
                   cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
     Recipe.create(title: 'Tabule', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Hard',
                   cook_time: 42,
                   ingredients: 'Tabule',
                   cook_method: 'Misture tudo',
-                  user: user)
+                  user: user, status: :approved)
     
     visit root_path
     fill_in 'Pesquisar receitas:', with: 'Bolo'
     click_on 'Pesquisar'
-
 
     expect(page).to have_content('2 resultados encontrados para: Bolo')
     expect(page).to have_css('h1', text: 'Bolo de cenoura')

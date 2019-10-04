@@ -5,19 +5,19 @@ feature 'User update recipe' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     user = User.create(email: 'stefano@revelo.com.br', password: '123456')
-    Recipe.create(title: 'Bolodecenoura', 
+    Recipe.create(title: 'Bolo de cenoura', 
                   difficulty: 'Médio',
                   recipe_type: recipe_type, 
                   cuisine: cuisine,
                   cook_time: 50, 
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
 
     # simula a ação do usuário
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Bolodecenoura'
+    click_on 'Bolo de cenoura'
     click_on 'Editar'
 
     fill_in 'Título', with: 'Bolo de cenoura'
@@ -48,7 +48,7 @@ feature 'User update recipe' do
                   cook_time: 50, 
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
 
     # simula a ação do usuário
     login_as(user, scope: :user)
@@ -77,7 +77,7 @@ feature 'User update recipe' do
                   cook_time: 50, 
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
     # simula a ação do usuário
     visit root_path
     click_on 'Bolo de cenoura'
@@ -89,14 +89,14 @@ feature 'User update recipe' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     user = User.create(email: 'stefano@revelo.com.br', password: '123456')
-    recipe = Recipe.create(title: 'Bolodecenoura', 
+    recipe = Recipe.create(title: 'Bolo de cenoura', 
                   difficulty: 'Médio',
                   recipe_type: recipe_type,
                   cuisine: cuisine,
                   cook_time: 50, 
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
     user_2 = User.create(email: 'not_stefano@revelo.com.br', password: '123456')
     
     # simula a ação do usuário
@@ -110,14 +110,14 @@ feature 'User update recipe' do
     recipe_type = RecipeType.create(name: 'Sobremesa')
     cuisine = Cuisine.create(name: 'Brasileira')
     user = User.create(email: 'stefano@revelo.com.br', password: '123456')
-    recipe = Recipe.create(title: 'Bolodecenoura', 
+    recipe = Recipe.create(title: 'Bolo de cenoura', 
                   difficulty: 'Médio',
                   recipe_type: recipe_type,
                   cuisine: cuisine,
                   cook_time: 50, 
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
     user_2 = User.create(email: 'not_stefano@revelo.com.br', password: '123456')
     
     # simula a ação do usuário

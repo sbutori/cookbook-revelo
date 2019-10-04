@@ -11,6 +11,8 @@ class Recipe < ApplicationRecord
   validates :title, :recipe_type_id, :cuisine_id, :user_id, 
   :difficulty, :cook_time, :ingredients, :cook_method, :picture, presence: true
 
+  enum status: { pending: 0, approved: 1} 
+
   def cook_time_min
     "#{cook_time} minutos" 
   end

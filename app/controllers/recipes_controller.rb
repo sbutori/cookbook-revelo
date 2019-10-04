@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
     # if params[:q]
     #   @recipes = Recipe.where("title = ?", params[:q])
     # else
-      @recipes = Recipe.all
+      @recipes = Recipe.where(status: [:approved])
       @recipe_types = RecipeType.all
       @cuisines = Cuisine.all
     # end
