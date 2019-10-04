@@ -1,4 +1,7 @@
-class RecipeListsController < ApplicationController  
+class RecipeListsController < ApplicationController
+  before_action :set_recipe_list, only: [:add_recipe]
+  before_action :authorized?, only: [:add_recipe]
+
   def index
   end
 
@@ -18,7 +21,6 @@ class RecipeListsController < ApplicationController
   end
 
   def add_recipe
-    @recipe_list = RecipeList.find(params[:id])
     @recipe = Recipe.find(params[:recipe_id])
     if @recipe_list.recipes.include?(@recipe)
       flash[:warning] = 'Essa receita já se encontra na lista!'
@@ -35,4 +37,11 @@ class RecipeListsController < ApplicationController
     params.require(:recipe_list).permit(:name, :user_id)
   end
 
+  def authorized?
+    redirect_to root_path unless @recipe_list.user == current_user
+  end
+
+  def set_recipe_list
+    @recipe_list = RecipeList.find(params[:id])
+  end
 end

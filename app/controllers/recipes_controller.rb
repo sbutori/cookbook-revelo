@@ -56,6 +56,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.where("title LIKE ?", "%#{params[:q]}%")
   end
 
+  def my_recipes
+    @recipes = Recipe.where("user_id == ?", "#{current_user.id}")
+  end
+
   private
 
   def set_recipe
