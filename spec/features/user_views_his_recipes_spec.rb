@@ -19,4 +19,16 @@ feature 'User' do
     expect(page).to have_content('Minhas receitas')
     expect(page).to have_content('Bolo de cenoura')
   end
+
+  scenario 'must be logged in to see his recipes' do
+    visit root_path
+    
+    expect(page).to_not have_link('Minhas receitas')
+  end
+
+  scenario 'must be logged in to directly visit recipes path' do
+    visit my_recipes_path
+    
+    expect(current_path).to eq new_user_session_path
+  end
 end
