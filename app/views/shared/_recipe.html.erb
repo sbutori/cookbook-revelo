@@ -1,6 +1,10 @@
-<h1><%= link_to recipe.title, recipe %></h1>
-<%= image_tag recipe.picture if recipe.picture.attached? %>
-<li>Tipo de Receita: <%=recipe.recipe_type.name %></li>
-<li>Cozinha: <%=recipe.cuisine.name %></li>
-<li>Dificuldade: <%=recipe.difficulty %></li>
-<li>Tempo de preparo: <%=recipe.cook_time_min %></li>
+<div class="card-product">
+  <%= image_tag recipe.picture if recipe.picture.attached? %>
+  <div class="card-product-infos">
+    <h1><%= link_to recipe.title, recipe %></h1>
+    <p><strong>Tipo de Receita:</strong> <%=recipe.recipe_type.name %></p>
+    <p><strong>Cozinha:</strong> <%=recipe.cuisine.name %></p>
+    <p><strong>Dificuldade:</strong> <%=recipe.difficulty %></p>
+    <p><strong>Tempo de preparo:</strong> <%=recipe.cook_time_min %></p>
+  </div>
+</div>

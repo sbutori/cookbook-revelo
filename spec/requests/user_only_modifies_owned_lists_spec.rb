@@ -10,7 +10,7 @@ describe 'User cant modify other users lists' do
       cook_time: 60,
       ingredients: 'Farinha, açucar, cenoura',
       cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
-      user: user)
+      user: user, status: :approved)
     recipe_list = RecipeList.create!(name: 'Minhas receitas favoritas', user: user)
     user_2= User.create(email: 'not_stefano@revelo.com.br', password: '123456')
    

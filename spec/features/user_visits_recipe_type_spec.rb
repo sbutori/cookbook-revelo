@@ -12,19 +12,19 @@ feature 'User visits recipe type' do
                   cook_time: 60,
                   ingredients: 'Farinha, açucar, cenoura',
                   cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes', 
-                  user: user)
+                  user: user, status: :approved)
     Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                   cuisine: cuisine, difficulty: 'Médio',
                   cook_time: 61,
                   ingredients: 'Farinha, açucar, chocolate',
                   cook_method: 'Cozinhe o chocolate, corte em pedaços pequenos, misture com o restante dos ingredientes',
-                  user: user)
+                  user: user, status: :approved)
     Recipe.create(title: 'Tabule', recipe_type: another_recipe_type,
                   cuisine: cuisine, difficulty: 'Hard',
                   cook_time: 42,
                   ingredients: 'Vários',
                   cook_method: 'Misture tudo',
-                  user: user)
+                  user: user, status: :approved)
     
     # simula a ação do usuário (ACT)
     visit root_path
