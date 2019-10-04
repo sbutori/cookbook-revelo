@@ -1,8 +1,12 @@
 <h1>Minhas receitas</h1>
+<% if @recipes.length > 0 %>
 <ol>
 <% @recipes.each do |recipe| %>
   <li><%= link_to recipe.title, recipe %></li>
 <% end %>
 </ol>
+<% else %>
+<h3><%= "Você não possui nenhuma receita cadastrada!" %></h3>
+<% end %>
 
 <%= link_to 'Voltar', root_path %>

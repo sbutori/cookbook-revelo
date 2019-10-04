@@ -20,6 +20,16 @@ feature 'User' do
     expect(page).to have_content('Bolo de cenoura')
   end
 
+  scenario 'and sees that he owns no recipes' do
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    login_as(user, scope: :user)
+
+    visit root_path
+    click_on 'Minhas receitas'
+
+    expect(page).to have_css('h3', text: 'Você não possui nenhuma receita cadastrada!')
+  end
+
   scenario 'must be logged in to see his recipes' do
     visit root_path
     
