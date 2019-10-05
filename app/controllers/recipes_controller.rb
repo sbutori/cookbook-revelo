@@ -58,7 +58,11 @@ class RecipesController < ApplicationController
   end
 
   def my_recipes
-    @recipes = Recipe.where("user_id == ?", "#{current_user.id}")
+    @recipes = Recipe.where({user: current_user})
+  end
+
+  def admin_review
+    @recipes = Recipe.where({status: :pending})
   end
 
   private
@@ -81,6 +85,6 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, 
-                                  :cook_time, :ingredients, :cook_method, :picture) 
+                                  :cook_time, :ingredients, :cook_method, :picture, :status) 
   end
 end

@@ -2,8 +2,7 @@
   <h3><%= "Nenhuma receita encontrada para cozinha #{@cuisine.name}" %></h3>
 <% else %>
   <h1><%= "Todas as receitas da cozinha #{@cuisine.name}" %></h1>
-
-  <%= render partial: 'shared/recipe', collection: @cuisine.recipes %>
+  <%= render partial: 'shared/recipe', collection: @cuisine.recipes.where({status: [:approved]}) %>
 <% end %>
 
 <%= link_to 'Voltar', root_path %>

@@ -3,7 +3,7 @@
 <% else %>
   <h1><%= "Todas as receitas na categoria #{@recipe_type.name}" %></h1>
 
-  <%= render partial: 'shared/recipe', collection: @recipe_type.recipes %>
+  <%= render partial: 'shared/recipe', collection: @recipe_type.recipes.where({status: [:approved]}) %>
 <% end %>
 
 <%= link_to 'Voltar', root_path %>

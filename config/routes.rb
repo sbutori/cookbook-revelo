@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   resources :cuisines, only: %i[index show new create]
   resources :recipe_lists, only: %i[index show new create]
   get 'my-recipes', to: 'recipes#my_recipes', as: 'my_recipes'
-  get 'admin-panel', to: 'user#admin_panel', as: 'admin_panel'
+  get 'admin-review-recipes', to: 'recipes#admin_review', as: 'admin_review_recipes'
 end

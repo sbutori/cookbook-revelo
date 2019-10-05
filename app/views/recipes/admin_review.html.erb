@@ -1,0 +1,14 @@
+<h1>Receitas pendentes de aprovação por um Admin:</h1>
+
+<ol>
+<% @recipes.each do |recipe| %>
+  <li><%= link_to recipe.title, recipe %></li>
+  <%= form_for recipe do |f| %>
+    <%= f.radio_button :status, :approved %> 
+    <%= f.label :status, 'Aprovar', value: :approved %>
+    <%= f.radio_button :status, :pending %>
+    <%= f.label :status, 'Pendente', value: :pending %>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+<% end %>
+</ol>

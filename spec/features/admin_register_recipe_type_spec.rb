@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin' do
   scenario 'registers recipe_type' do
-    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456', admin: true)
 
     login_as(user, scope: :user)
     visit root_path
@@ -14,7 +14,7 @@ feature 'Admin' do
   end
 
   scenario 'fails to save recipe_type without filling all fields' do
-    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456', admin: true)
 
     login_as(user, scope: :user)
     visit root_path
@@ -27,7 +27,7 @@ feature 'Admin' do
   end
 
   scenario 'cannot register duplicated recipe_type' do
-    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456', admin: true)
     RecipeType.create!(name: 'Café da manhã')
 
     login_as(user, scope: :user)

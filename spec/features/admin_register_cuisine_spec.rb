@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin' do
   scenario 'registers cuisine' do
-    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456', admin: true)
 
     # ARRANGE
     # Nada a fazer por aqui :)
@@ -20,7 +20,7 @@ feature 'Admin' do
   end
 
   scenario 'fails to save cuisine without filling all fields' do
-    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456', admin: true)
 
     login_as(user, scope: :user)
     visit root_path
@@ -32,7 +32,7 @@ feature 'Admin' do
   end
 
   scenario 'cannot register duplicated cuisine' do
-    user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+    user = User.create(email: 'stefano@revelo.com.br', password: '123456', admin: true)
     Cuisine.create!(name: 'Brasileira')
 
     login_as(user, scope: :user)

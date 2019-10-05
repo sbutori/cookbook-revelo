@@ -1,11 +1,14 @@
 <nav>
   <h2>CookBook</h2>
   <% if user_signed_in? %>
-    <%= link_to 'Enviar uma receita', new_recipe_path %>
-    <%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path %>
-    <%= link_to 'Cadastrar nova cozinha', new_cuisine_path %>
     <%= link_to 'Minhas receitas', my_recipes_path %>
     <%= link_to 'Minhas listas de receitas', recipe_lists_path  %>
+    <%= link_to 'Enviar uma receita', new_recipe_path %>
+    <% if current_user.admin? %>
+      <%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path %>
+      <%= link_to 'Cadastrar nova cozinha', new_cuisine_path %>
+      <%= link_to 'Admin - Aprovar receitas', admin_review_recipes_path %>
+    <% end %>
     <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
   <% else %>
     <%= link_to 'Entrar', new_user_session_path %>
