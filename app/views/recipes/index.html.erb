@@ -2,7 +2,7 @@
 <p>Bem-vindo ao maior livro de receitas online</p>
 
 <div>
-  <%= form_with(url: "/search", method: "get", local: true) do %>
+  <%= form_with(url: search_recipes_path, method: "get", local: true) do %>
     <%= label_tag(:q, "Pesquisar receitas:") %>
     <%= text_field_tag(:q) %>
     <%= submit_tag("Pesquisar") %>
