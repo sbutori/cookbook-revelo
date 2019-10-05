@@ -1,18 +1,16 @@
-<nav class="bg-light border-right" id="sidebar-wrapper">
-  <div class="sidebar-heading">Menu</div>
-  <div class="list-group list-group-flush">
-    <% if user_signed_in? %>
-      <%= link_to 'Enviar uma receita', new_recipe_path, class: "list-group-item list-group-item-action bg-light"%>
-      <%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path, class: "list-group-item list-group-item-action bg-light"%>
-      <%= link_to 'Cadastrar nova cozinha', new_cuisine_path, class: "list-group-item list-group-item-action bg-light"%>
-      <%= link_to 'Minhas receitas', my_recipes_path, class: "list-group-item list-group-item-action bg-light"%>
-      <%= link_to 'Minhas listas de receitas', recipe_lists_path , class: "list-group-item list-group-item-action bg-light"%>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action bg-light"%>
-    <% else %>
-      <%= link_to 'Entrar', new_user_session_path, class: "list-group-item list-group-item-action bg-light"%>
-      <%= link_to 'Criar conta', new_user_registration_path, class: "list-group-item list-group-item-action bg-light"%>
-    <% end %>
-  </div>
+<nav>
+  <h2>CookBook</h2>
+  <% if user_signed_in? %>
+    <%= link_to 'Enviar uma receita', new_recipe_path %>
+    <%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path %>
+    <%= link_to 'Cadastrar nova cozinha', new_cuisine_path %>
+    <%= link_to 'Minhas receitas', my_recipes_path %>
+    <%= link_to 'Minhas listas de receitas', recipe_lists_path  %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Entrar', new_user_session_path %>
+    <%= link_to 'Criar conta', new_user_registration_path %>
+  <% end %>
 </nav>
 
 
