@@ -31,8 +31,8 @@ feature 'User visits recipe type' do
     click_on 'Sobremesa'
 
     # expectativas do usuário após a ação
-    expect(page).to have_css('h1', text: 'Bolo de cenoura')
-    expect(page).to have_css('h1', text: 'Bolo de chocolate')
+    expect(page).to have_content('Bolo de cenoura')
+    expect(page).to have_content('Bolo de chocolate')
     expect(page).to_not have_css('h1', text: 'Tabule')
   end
 

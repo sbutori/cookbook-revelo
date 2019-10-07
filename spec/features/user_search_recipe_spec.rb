@@ -29,7 +29,7 @@ feature 'User search recipe' do
 
     # expectativas do usuário após a ação
     expect(page).to have_content('1 resultado encontrado para: Bolo de cenoura')
-    expect(page).to have_css('h1', text: 'Bolo de cenoura')
+    expect(page).to have_content('Bolo de cenoura')
     expect(page).to_not have_css('h1', text: 'Bolo de chocolate')
   end
 
@@ -81,8 +81,8 @@ feature 'User search recipe' do
     click_on 'Pesquisar'
 
     expect(page).to have_content('2 resultados encontrados para: Bolo')
-    expect(page).to have_css('h1', text: 'Bolo de cenoura')
-    expect(page).to have_css('h1', text: 'Bolo de chocolate')
+    expect(page).to have_content('Bolo de cenoura')
+    expect(page).to have_content('Bolo de chocolate')
     expect(page).to_not have_css('h1', text: 'Tabule')
   end
 end

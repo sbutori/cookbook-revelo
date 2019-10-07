@@ -1,8 +1,16 @@
-<div>
-  <%= image_tag recipe.picture if recipe.picture.attached? %>
-  <h1><%= link_to recipe.title, recipe %></h1>
-  <p><strong>Tipo de Receita:</strong> <%=recipe.recipe_type.name %></p>
-  <p><strong>Cozinha:</strong> <%=recipe.cuisine.name %></p>
-  <p><strong>Dificuldade:</strong> <%=recipe.difficulty %></p>
-  <p><strong>Tempo de preparo:</strong> <%=recipe.cook_time_min %></p>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <%= image_tag recipe.picture , class: "card-img" if recipe.picture.attached? %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to recipe.title, recipe %></h1>
+        <p class="card-text"><strong>Tipo de Receita:</strong> <%=recipe.recipe_type.name %></p>
+        <p class="card-text"><strong>Cozinha:</strong> <%=recipe.cuisine.name %></p>
+        <p class="card-text"><strong>Dificuldade:</strong> <%=recipe.difficulty %></p>
+        <p class="card-text"><strong>Tempo de preparo:</strong> <%=recipe.cook_time_min %></p>
+      </div>
+    </div>
+  </div>
 </div>
