@@ -8,11 +8,13 @@ class Recipe < ApplicationRecord
 
   has_one_attached :picture
 
+  enum status: { pending: 0, approved: 1, rejected: 2} 
+
+  # validates :status, inclusion: { in: %w[pending approved rejected] }
+  validates :status, inclusion: { in: statuses.keys }
   validates :title, :recipe_type_id, :cuisine_id, :user_id, 
   :difficulty, :cook_time, :ingredients, :cook_method, :picture, presence: true
-
-  enum status: { pending: 0, approved: 1} 
-
+  
   def cook_time_min
     "#{cook_time} minutos" 
   end

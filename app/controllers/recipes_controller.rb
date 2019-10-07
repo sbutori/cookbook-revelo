@@ -62,7 +62,9 @@ class RecipesController < ApplicationController
   end
 
   def admin_review
+    redirect_to root_path unless current_user.admin?
     @recipes = Recipe.where({status: :pending})
+    
   end
 
   private

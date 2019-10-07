@@ -3,9 +3,11 @@
 <ol>
 <% @recipes.each do |recipe| %>
   <li><%= link_to recipe.title, recipe %></li>
-  <%= form_for recipe do |f| %>
+  <%= form_with model: recipe, local: true do |f| %>
     <%= f.radio_button :status, :approved %> 
     <%= f.label :status, 'Aprovar', value: :approved %>
+    <%= f.radio_button :status, :rejected %>
+    <%= f.label :status, 'Rejeitar', value: :rejected %>
     <%= f.radio_button :status, :pending %>
     <%= f.label :status, 'Pendente', value: :pending %>
     <%= f.submit 'Enviar' %>
