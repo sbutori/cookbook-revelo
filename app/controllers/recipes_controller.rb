@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show search]
-  before_action :set_recipe, only: %i[show edit update]
+  before_action :set_recipe, only: %i[show edit update approve reject]
   before_action :set_recipe_type, only: %i[new edit]
   before_action :set_cuisine, only: %i[new edit]
   before_action :authorized?, only: %i[edit]
@@ -61,10 +61,20 @@ class RecipesController < ApplicationController
     @recipes = Recipe.where({user: current_user})
   end
 
+
+  def approve
+    @recipe.approved!
+    redirect_to admin_review_recipes_path
+  end
+
+  def reject
+    @recipe.rejected!
+    redirect_to admin_review_recipes_path
+  end
+
   def admin_review
     redirect_to root_path unless current_user.admin?
     @recipes = Recipe.where({status: :pending})
-    
   end
 
   private

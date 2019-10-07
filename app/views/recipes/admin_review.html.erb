@@ -1,16 +1,16 @@
-<h1>Receitas pendentes de aprovação por um Admin:</h1>
+<h1 class="text-center">Receitas pendentes de aprovação:</h1>
 
-<ol>
+<ol class="mt-3 text-center">
 <% @recipes.each do |recipe| %>
-  <li><%= link_to recipe.title, recipe %></li>
-  <%= form_with model: recipe, local: true do |f| %>
-    <%= f.radio_button :status, :approved %> 
-    <%= f.label :status, 'Aprovar', value: :approved %>
-    <%= f.radio_button :status, :rejected %>
-    <%= f.label :status, 'Rejeitar', value: :rejected %>
-    <%= f.radio_button :status, :pending %>
-    <%= f.label :status, 'Pendente', value: :pending %>
-    <%= f.submit 'Enviar' %>
-  <% end %>
+  <li>
+    <%= link_to recipe.title, recipe, class: 'mr-4' %> <%= link_to 'Aprovar', approve_recipe_path(recipe), class: 'btn btn-success', method: :post %> <%= link_to 'Rejeitar', reject_recipe_path(recipe), class: 'btn btn-danger', method: :post %>
+  </li>
+    <%# f.radio_button :status, :approved, id: "approved-#{recipe.id}" %> 
+    <%# f.label :status, 'Aprovar', value: :approved, for: "approved-#{recipe.id}" %>
+    <%# f.radio_button :status, :rejected,  id: "reject-#{recipe.id}" %>
+    <%# f.label :status, 'Rejeitar', value: :rejected,  for: "reject-#{recipe.id}" %>
+    <%# f.radio_button :status, :pending,  id: "pending-#{recipe.id}" %>
+    <%# f.label :status, 'Pendente', value: :pending, for: "pending-#{recipe.id}" %>
+    <%# f.submit 'Enviar' %>
 <% end %>
 </ol>

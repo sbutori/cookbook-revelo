@@ -15,8 +15,7 @@ feature 'Admin' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Admin - Aprovar receitas'
-    choose 'Aprovar'
-    click_on 'Enviar'
+    click_on 'Aprovar'
     
     recipe.reload
     expect(recipe.status).to eq("approved")
@@ -36,8 +35,7 @@ feature 'Admin' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Admin - Aprovar receitas'
-    choose 'Rejeitar'
-    click_on 'Enviar'
+    click_on 'Rejeitar'
     
     recipe.reload
     expect(recipe.status).to eq("rejected")

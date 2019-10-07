@@ -1,15 +1,27 @@
-<%= image_tag @recipe.picture if @recipe.picture.attached? %>
-<h1><%= @recipe.title %></h1>
-<h3>Detalhes</h3>
-<p>Tipo de Receita: <%=  @recipe.recipe_type.name %></p>
-<p>Cozinha: <%=  @recipe.cuisine.name %></p>
-<p>Dificuldade: <%=  @recipe.difficulty %></p>
-<p>Tempo de Preparo: <%=  @recipe.cook_time_min %></p>
-<h3>Ingredientes</h3>
-<p><%=  @recipe.ingredients %></p>
-<h3>Como Preparar</h3>
-<p><%=  @recipe.cook_method %></p>
-<p>Receita enviada por <%= @recipe.user.email %></p>
+<div class="row">
+  <div class="col-sm-6">
+    <h1><%= @recipe.title %></h1>
+    <h3>Detalhes</h3>
+    <p>Tipo de Receita: <%=  @recipe.recipe_type.name %></p>
+    <p>Cozinha: <%=  @recipe.cuisine.name %></p>
+    <p>Dificuldade: <%=  @recipe.difficulty %></p>
+    <p>Tempo de Preparo: <%=  @recipe.cook_time_min %></p>
+  </div>
+  <div class="col-sm-6">
+    <%= image_tag @recipe.picture, style: "max-width: 100%" if @recipe.picture.attached? %>
+  </div>
+</div>
+  <div class="row">
+  <div class="col-sm-6">
+    <h3>Ingredientes</h3>
+    <p><%=  @recipe.ingredients %></p>
+  </div>
+  <div class="col-sm-6">
+    <h3>Como Preparar</h3>
+    <p><%=  @recipe.cook_method %></p>
+    <p>Receita enviada por <%= @recipe.user.email %></p>
+  </div>
+</div>
 <%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
 
 <% if user_signed_in? && @recipe.user == current_user  %>

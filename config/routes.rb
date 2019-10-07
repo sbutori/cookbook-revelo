@@ -6,10 +6,11 @@ Rails.application.routes.draw do
     resources :recipe_lists, only: [] do
       post 'add_recipe', on: :member
     end
-    # get 'search', to: 'recipes#search', as: 'recipe_search'
-    collection do
-      get 'search'
+    member do 
+      post 'approve'
+      post 'reject'
     end
+    get 'search', on: :collection # get 'search', to: 'recipes#search', as: 'recipe_search'
   end
   resources :recipe_types, only: %i[index show new create]
   resources :cuisines, only: %i[index show new create]
