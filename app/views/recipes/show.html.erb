@@ -38,7 +38,6 @@
 
   <h3>Listas em que essa receita está cadastrada:</h3>
   <ul>
-
   <% @recipe.recipe_lists.each do |recipe_list| %>
     <li class="list-name"><%= recipe_list.name %></li>
   <% end %>

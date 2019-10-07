@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe_type, only: %i[new edit]
   before_action :set_cuisine, only: %i[new edit]
   before_action :authorized?, only: %i[edit]
+  before_action :authorized_admin?, only: %i[approve reject admin_review]
 
   def index
     # if params[:q]
@@ -73,8 +74,7 @@ class RecipesController < ApplicationController
   end
 
   def admin_review
-    redirect_to root_path unless current_user.admin?
-    @recipes = Recipe.where({status: :pending})
+    @recipes = Recipe.pending
   end
 
   private
@@ -93,6 +93,10 @@ class RecipesController < ApplicationController
 
   def authorized?
     redirect_to root_path unless @recipe.user == current_user
+  end
+
+  def authorized_admin?
+    redirect_to root_path unless current_user.admin?
   end
 
   def recipe_params
