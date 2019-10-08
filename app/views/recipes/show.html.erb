@@ -30,11 +30,11 @@
 
 <% if user_signed_in? %>
   <h3>Adicionar receita à lista:</h3>
-  <ul>
-    <% current_user.recipe_lists.each do |recipe_list| %>
-      <li><%= link_to recipe_list.name, add_recipe_recipe_recipe_list_path(@recipe, recipe_list), method: :post %></li>
-    <% end %>
-  </ul>
+  <%= form_with model: [@recipe, @recipe_list_item], local: true do |f| %>
+  <%= f.label :recipe_list_id %>
+  <%= f.collection_select :recipe_list_id, @recipe_lists, :id, :name,  {}, {class: "form-control"} %>
+  <%= f.submit 'Adicionar' %>
+  <% end %>
 
   <h3>Listas em que essa receita está cadastrada:</h3>
   <ul>

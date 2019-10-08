@@ -7,18 +7,16 @@ class RecipesController < ApplicationController
   before_action :authorized_admin?, only: %i[approve reject admin_review]
 
   def index
-    # if params[:q]
-    #   @recipes = Recipe.where("title = ?", params[:q])
-    # else
       @recipes = Recipe.where(status: [:approved])
       @recipe_types = RecipeType.all
       @cuisines = Cuisine.all
-    # end
   end
 
   
   def show
     # @recipe = Recipe.find(params[:id])
+    @recipe_list_item = RecipeListItem.new
+    @recipe_lists = RecipeList.all
   end
 
   def new

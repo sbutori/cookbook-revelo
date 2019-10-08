@@ -17,7 +17,7 @@ feature 'User add recipe to recipe list' do
 
     visit root_path
     click_on 'Bolo de cenoura'
-    click_on 'Minhas receitas favoritas'
+    click_on 'Adicionar'
     
     expect(page).to have_css("li.list-name")
   end
@@ -38,8 +38,8 @@ feature 'User add recipe to recipe list' do
 
     visit root_path
     click_on 'Bolo de cenoura'
-    click_on 'Minhas receitas favoritas'
-    click_on 'Minhas receitas favoritas'
+    click_on 'Adicionar'
+    click_on 'Adicionar'
     
     expect(page).to have_content("Essa receita já se encontra na lista!")
   end
