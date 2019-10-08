@@ -18,4 +18,8 @@ class Recipe < ApplicationRecord
   def cook_time_min
     "#{cook_time} minutos" 
   end
+
+  def as_json(options = {})
+    super(options.merge({ include: :recipe_type, except: [:recipe_type_id] }))
+  end
 end

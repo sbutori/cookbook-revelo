@@ -21,4 +21,11 @@ Rails.application.routes.draw do
   resources :recipe_lists, only: %i[index new create]
   get 'my-recipes', to: 'recipes#my_recipes', as: 'my_recipes'
   get 'admin-review-recipes', to: 'recipes#admin_review', as: 'admin_review_recipes'
+
+  # API routes
+  namespace 'api' do
+    namespace 'v1' do
+      resources :recipes, only: %i[index show]
+    end
+  end
 end

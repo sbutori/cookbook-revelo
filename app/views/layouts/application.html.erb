@@ -13,13 +13,18 @@
 
   <body>
     <div id="wrapper">
-      <%= render 'shared/navbar' %>
+      <header>
+        <%= render 'shared/navbar' %>
+      </header>
       <%= flash[:warning] %>
       <%= notice %>
       <%= alert %>
       <div class="container my-3">
         <%= yield %>
       </div>
+      <footer class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+        <%= render 'shared/footer' %>
+      </footer>
     </div>
   </body>
 </html>
