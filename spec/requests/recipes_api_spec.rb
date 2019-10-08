@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Recipes Api' do 
   context 'index' do
     it 'and view multiple recipes' do
+      pending
       user = User.create(email: 'stefano@revelo.com.br', password: '123456')
       recipe_type = RecipeType.create(name: 'Sobremesa')
       cuisine = Cuisine.create(name: 'Brasileira')
@@ -28,7 +29,6 @@ describe 'Recipes Api' do
       expect(json_recipes[1][:title]).to eq 'Bolo de banana'
 
       # expect(response.body).to include('Bolo de banana')
-
     end
   end
 

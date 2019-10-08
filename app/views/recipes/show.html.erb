@@ -31,7 +31,7 @@
 <% if user_signed_in? %>
   <h3>Adicionar receita à lista:</h3>
   <%= form_with model: [@recipe, @recipe_list_item], local: true do |f| %>
-  <%= f.label :recipe_list_id %>
+  <%= f.label :recipe_list_id, 'Minhas listas de receitas' %>
   <%= f.collection_select :recipe_list_id, @recipe_lists, :id, :name,  {}, {class: "form-control"} %>
   <%= f.submit 'Adicionar' %>
   <% end %>

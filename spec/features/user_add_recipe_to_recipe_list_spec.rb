@@ -38,7 +38,9 @@ feature 'User add recipe to recipe list' do
 
     visit root_path
     click_on 'Bolo de cenoura'
+    select 'Minhas receitas favoritas', from: 'Minhas listas de receitas'
     click_on 'Adicionar'
+    select 'Minhas receitas favoritas', from: 'Minhas listas de receitas'
     click_on 'Adicionar'
     
     expect(page).to have_content("Essa receita já se encontra na lista!")
