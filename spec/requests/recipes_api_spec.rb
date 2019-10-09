@@ -86,4 +86,19 @@ describe 'Recipes Api' do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  context 'create' do
+    it 'a recipe type' do
+      recipe_type = RecipeType.new(name: 'Sobremesa')
+      post '/api/v1/recipe_types', params: { recipe_type: { name: recipe_type.name } }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to eq 'application/json'
+    end
+
+    it 'returns a error if recipe is not created' do
+      post '/api/v1/recipe_types', params: { }
+      expect(response).to have_http_status(400)
+    end
+  end
 end
