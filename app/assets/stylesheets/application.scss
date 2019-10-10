@@ -15,3 +15,31 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import "shared/_recipe.scss";
+
+.container {
+  min-height: 78vh;
+}
+
+
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+
+  #copyright {
+    margin: 1rem 0;
+    color: white;
+
+  }
+}
+
+i {
+  color: white;
+  margin: 1rem;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: blue;
+  }
+}
+

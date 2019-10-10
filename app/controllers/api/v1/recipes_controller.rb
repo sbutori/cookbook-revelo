@@ -1,4 +1,4 @@
-class Api::V1::RecipesController < ActionController::API
+class Api::V1::RecipesController < Api::V1::ApiController
   def index
     # return render json: Recipe.all unless permitted_status
 
@@ -10,9 +10,27 @@ class Api::V1::RecipesController < ActionController::API
 
   def show
     @recipe = Recipe.find(params[:id])
-    render json: @recipe.as_json
+    return render json: @recipe if @recipe.present?
+    render json: @recipe
   rescue ActiveRecord::RecordNotFound
     render json: { error: "404 Not Found" }, status: :not_found
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    # patch api_vi_recipe_path(recipe), params: {  }
+    return render json: @recipe if @recipe.update(recipe_params)
+
+    render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
+
+  rescue 
+    render json: { message: 'Erro!' }, status: :unprocessable_entity 
+    # if @recipe.update(recipe_params)
+    #   render json: @recipe, status: :accepted
+    # else
+    #   render json: { errors: @recipe.errors.full_messages }, status: :unprocessable_entity
+    # end
   end
 
   # def new 
@@ -32,18 +50,16 @@ class Api::V1::RecipesController < ActionController::API
   #   @recipe = Recipe.find(params[:id])
   # end
 
-  # def update
-  #   @recipe = Recipe(recipe_params)
-  #   if @recipe.update
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+  end
 
-  # private
+  private
 
-  # def recipe_params
-  #   params.require(:recipe).permit(:title, :ingredients, ...)
-  # end
+  def recipe_params
+    params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :difficulty, 
+      :cook_time, :ingredients, :cook_method, :picture, :status) 
+  end
 end
  

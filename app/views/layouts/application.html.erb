@@ -8,23 +8,20 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <title>Cookbook Revelo</title>
   </head>
 
   <body>
     <div id="wrapper">
-      <header>
-        <%= render 'shared/navbar' %>
-      </header>
+      <%= render 'shared/navbar' %>
       <%= flash[:warning] %>
       <%= notice %>
       <%= alert %>
       <div class="container my-3">
         <%= yield %>
       </div>
-      <footer class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
-        <%= render 'shared/footer' %>
-      </footer>
+      <%= render 'shared/footer' %>
     </div>
   </body>
 </html>

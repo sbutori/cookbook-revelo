@@ -1,44 +1,46 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
-  <h2><%= link_to 'CookBook', root_path, class: 'navbar-brand' %></h2>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+    <h2><%= link_to 'CookBook', root_path, class: 'navbar-brand' %></h2>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
-    <% if user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to 'Minhas receitas', my_recipes_path, class: "nav-link mx-1 mx-1" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Minhas listas de receitas', recipe_lists_path, class: "nav-link mx-1" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Enviar uma receita', new_recipe_path, class: "nav-link mx-1" %>
-      </li>
-      <% if current_user.admin? %>
-      <li class="nav-item">
-        <%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path, class: "nav-link mx-1" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Cadastrar nova cozinha', new_cuisine_path, class: "nav-link mx-1" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Admin - Aprovar receitas', admin_review_recipes_path, class: "nav-link mx-1" %>
-      </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Minhas receitas', my_recipes_path, class: "nav-link mx-1 mx-1" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Minhas listas de receitas', recipe_lists_path, class: "nav-link mx-1" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Enviar uma receita', new_recipe_path, class: "nav-link mx-1" %>
+        </li>
+        <% if current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to 'Cadastrar novo tipo de receita', new_recipe_type_path, class: "nav-link mx-1" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Cadastrar nova cozinha', new_cuisine_path, class: "nav-link mx-1" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Admin - Aprovar receitas', admin_review_recipes_path, class: "nav-link mx-1" %>
+        </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-link mx-1 btn btn-primary" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Entrar', new_user_session_path, class: "nav-link mx-1 btn btn-primary" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Criar conta', new_user_registration_path, class: "nav-link mx-1 btn btn-primary" %>
+        </li>
       <% end %>
-      <li class="nav-item">
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "nav-link mx-1 btn btn-primary" %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to 'Entrar', new_user_session_path, class: "nav-link mx-1 btn btn-primary" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Criar conta', new_user_registration_path, class: "nav-link mx-1 btn btn-primary" %>
-      </li>
-    <% end %>
-    </ul>
-  </div>
-</nav>
+      </ul>
+    </div>
+  </nav>
+</header>

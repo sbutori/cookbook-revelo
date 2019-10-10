@@ -81,7 +81,7 @@ describe 'Recipes Api' do
       expect(json_recipe[:title]).to eq 'Bolo de cenoura'
     end
 
-    it 'returns a error if page not found' do
+    it 'returns a 404 error if recipe is not found' do
       get api_v1_recipe_path(9001)
       expect(response).to have_http_status(:not_found)
     end
@@ -96,9 +96,39 @@ describe 'Recipes Api' do
       expect(response.content_type).to eq 'application/json'
     end
 
-    it 'returns a error if recipe is not created' do
+    it 'returns a error if params is blank' do
       post '/api/v1/recipe_types', params: { }
       expect(response).to have_http_status(400)
+    end
+
+    it 'returns a error if one of recipes attributes is blank' do
+      post '/api/v1/recipe_types', params: { recipe_type: { name: '' } }
+      expect(response).to have_http_status(400)
+    end
+  end
+
+  context 'delete' do
+    it 'destroys a recipe' do
+      user = User.create(email: 'stefano@revelo.com.br', password: '123456')
+      recipe_type = RecipeType.create(name: 'Sobremesa')
+      cuisine = Cuisine.create(name: 'Brasileira')
+      recipe = Recipe.create!(title: 'Bolo de cenoura', recipe_type: recipe_type,
+      cuisine: cuisine, difficulty: 'Médio',
+      cook_time: 60,
+      ingredients: 'Farinha, açucar, cenoura',
+      cook_method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes',
+      user: user, status: :approved)
+
+      delete api_v1_recipe_path(recipe)
+      expect(response).to have_http_status(204)
+
+      get api_v1_recipe_path(recipe)
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns a 404 error if no recipe is found' do
+      delete api_v1_recipe_path(9001)
+      expect(response).to have_http_status(:not_found)
     end
   end
 end
